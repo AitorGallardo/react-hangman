@@ -1,19 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const getRandomWord = (array) => {
   const randomNumber = Math.floor(Math.random() * array.length);
   const randomWord = array.at(randomNumber);
   return randomWord;
 };
-export const HangmanWord = () => {
+
+export const useGetWord = () => {
+  const [word, setWord] = useState(null);
+
   useEffect(() => {
     fetch('./src/assets/words.txt')
       .then((r) => r.text())
       .then((text) => {
         const allWords = text.split('\n');
-        const word  = getRandomWord(allWords);
+        const w = getRandomWord(allWords);
+        setWord(w);
       });
+
   }, []);
 
-  return <div>HangmanWord</div>;
+  return { word };
 };
