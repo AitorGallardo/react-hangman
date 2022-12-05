@@ -5,7 +5,7 @@ import { Keyboard } from './Keyboard';
 export const App = () => {
   const MAXERRORS = 7;
 
-  const { word, occurrences } = useGetWord();
+  const { word, occurrences, setOccurrences } = useGetWord();
 
   const lookForOcurrences = (character) => {
     const guessedCharacters = word
@@ -13,7 +13,7 @@ export const App = () => {
       .map((e, index) => (e === character ? index : ''))
       .filter(String);
     if (guessedCharacters.length > 0) {
-      occurrences = [...occurrences, ...guessedCharacters];
+      setOccurrences(()=>[...occurrences, ...guessedCharacters])
     }
   };
 

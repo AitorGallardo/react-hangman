@@ -27,8 +27,8 @@ const alphabet = [
   'z',
 ];
 export const Keyboard = ({selectedCharacter}) => {
-  const handleClick = (key) => {
-    selectedCharacter(key)
+  const handleClick = (character) => {
+    selectedCharacter(character)
   };
   return (
     <div className='keyboard'>

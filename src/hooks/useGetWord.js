@@ -23,12 +23,12 @@ export const useGetWord = () => {
       .then((text) => {
         const allWords = text.split('\n');
         const word = getRandomWord(allWords);
-        const occurrenes = getRandomCharacter(word);
+        const occurrences = getRandomCharacter(word);
         setWord(word);
-        setOccurrences(occurrenes)
+        setOccurrences(occurrences)
       });
 
   }, []);
 
-  return { word, occurrences};
+  return { word, occurrences, setOccurrences};
 };
