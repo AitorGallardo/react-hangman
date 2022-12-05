@@ -1,10 +1,15 @@
-import { HangmanDraw } from './';
+import { HangmanDraw, HangmanWord} from './';
 import { useGetWord } from './hooks/useGetWord';
 import { Keyboard } from './Keyboard';
 
 export const App = () => {
   const { word } = useGetWord();
+  const checkSelectedCharacter = (character)=>{
+    const occurrences = word.split('').map((e,index)=> e===character ? index : '').filter(String); 
+    console.log('OCURRENCES',occurrences);
+  }
   return (
+
     <div
       style={{
         maxWidth: '800px',
@@ -16,7 +21,8 @@ export const App = () => {
     >
       <h1>{word}</h1>
       <HangmanDraw />
-      <Keyboard/>
+      <HangmanWord word={word}/>
+      <Keyboard selectedCharacter={checkSelectedCharacter}/>
     </div>
   );
 };
