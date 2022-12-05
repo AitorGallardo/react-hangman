@@ -29,7 +29,6 @@ const alphabet = [
 export const Keyboard = ({selectedCharacter}) => {
   const handleClick = (key) => {
     selectedCharacter(key)
-    console.log('HAS CLICKED ===>', key);
   };
   return (
     <div className='keyboard'>

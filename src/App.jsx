@@ -1,15 +1,23 @@
-import { HangmanDraw, HangmanWord} from './';
+import { HangmanDraw, HangmanWord } from './';
 import { useGetWord } from './hooks/useGetWord';
 import { Keyboard } from './Keyboard';
 
 export const App = () => {
-  const { word } = useGetWord();
-  const checkSelectedCharacter = (character)=>{
-    const occurrences = word.split('').map((e,index)=> e===character ? index : '').filter(String); 
-    console.log('OCURRENCES',occurrences);
-  }
-  return (
+  const MAXERRORS = 7;
 
+  const { word, occurrences } = useGetWord();
+
+  const lookForOcurrences = (character) => {
+    const guessedCharacters = word
+      .split('')
+      .map((e, index) => (e === character ? index : ''))
+      .filter(String);
+    if (guessedCharacters.length > 0) {
+      occurrences = [...occurrences, ...guessedCharacters];
+    }
+  };
+
+  return (
     <div
       style={{
         maxWidth: '800px',
@@ -21,8 +29,8 @@ export const App = () => {
     >
       <h1>{word}</h1>
       <HangmanDraw />
-      <HangmanWord word={word}/>
-      <Keyboard selectedCharacter={checkSelectedCharacter}/>
+      <HangmanWord word={word} occurrences={occurrences} />
+      <Keyboard selectedCharacter={lookForOcurrences} />
     </div>
   );
 };
