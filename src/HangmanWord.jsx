@@ -6,6 +6,7 @@ const getRandomWord = (array) => {
   return randomWord;
 };
 export const HangmanWord = () => {
+  const MAXERRORS = 7;
   useEffect(() => {
     fetch('./src/assets/words.txt')
       .then((r) => r.text())

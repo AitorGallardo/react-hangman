@@ -1,0 +1,20 @@
+div.keyboard{
+    background-color: pink;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(10, minmax(auto, 1fr));
+}
+
+div.keyboard-character{
+    border: 1px solid black;
+    font-size: 40px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10%;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+div.keyboard-character:hover{
+    background-color: aquamarine;
+    transform: scale(1.1);
+}

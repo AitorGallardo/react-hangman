@@ -1,5 +1,6 @@
 import { HangmanDraw } from './';
 import { useGetWord } from './hooks/useGetWord';
+import { Keyboard } from './Keyboard';
 
 export const App = () => {
   const { word } = useGetWord();
@@ -15,6 +16,7 @@ export const App = () => {
     >
       <h1>{word}</h1>
       <HangmanDraw />
+      <Keyboard/>
     </div>
   );
 };
