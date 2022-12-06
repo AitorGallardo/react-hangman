@@ -13,6 +13,15 @@ div.keyboard__character {
   cursor: pointer;
   text-transform: uppercase;
 }
+div.keyboard__character-clicked {
+  border: 1px solid black;
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10%;
+  text-transform: uppercase;
+  opacity: 0.3;
+}
 div.keyboard__character:hover {
   transform: scale(1.1);
 }
@@ -25,7 +34,6 @@ div.word__container {
 
 div.word__character {
   position:relative;
-  background-color: green;
   font-size: 40px;
   min-height: 40px;
   min-width: 40px;
@@ -38,7 +46,7 @@ div.word__character>.bottomLine {
   bottom: 0;
   width: 100%;
   height: 4px;
-  background-color: blueviolet;
+  background-color: white;
 }
 
 div.word__character>.content {

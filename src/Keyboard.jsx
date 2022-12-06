@@ -26,16 +26,22 @@ const alphabet = [
   'y',
   'z',
 ];
-export const Keyboard = ({selectedCharacter}) => {
+export const Keyboard = ({ selectedCharacter, clickedCharacters}) => {
   const handleClick = (character) => {
-    selectedCharacter(character)
+    if (!clickedCharacters.includes(character)) {
+      selectedCharacter(character);
+    }
   };
   return (
     <div className='keyboard'>
       {alphabet.map((character, index) => (
         <div
           key={index}
-          className='keyboard__character'
+          className={
+            clickedCharacters.includes(character)
+              ? 'keyboard__character-clicked'
+              : 'keyboard__character'
+          }
           onClick={() => handleClick(character)}
         >
           {character}

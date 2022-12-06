@@ -1,19 +1,43 @@
-import { HangmanDraw, HangmanWord } from './';
+import { useEffect, useState } from 'react';
+import { HangmanDraw, HangmanWord, Keyboard, PopUp } from './';
 import { useGetWord } from './hooks/useGetWord';
-import { Keyboard } from './Keyboard';
 
+const MAXERRORS = 7;
 export const App = () => {
-  const MAXERRORS = 7;
+  const [errors, setErrors] = useState([]);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [clickedCharacters, setClickedCharacters] = useState([]);
 
-  const { word, occurrences, setOccurrences } = useGetWord();
+  const { word, occurrences, setOccurrences, updateWord } = useGetWord();
+
+  useEffect(() => {
+    if (errors.length >= 7) {
+      setShowPopUp(true);
+    }
+  }, [errors]);
+
+  const resetGame = () => {
+    setShowPopUp(false);
+    setClickedCharacters([]);
+    setOccurrences([]);
+    setErrors([])
+    updateWord();
+  };
 
   const lookForOcurrences = (character) => {
+
+    setClickedCharacters([...clickedCharacters, character]);
+
     const guessedCharacters = word
       .split('')
       .map((e, index) => (e === character ? index : ''))
       .filter(String);
+
     if (guessedCharacters.length > 0) {
-      setOccurrences(()=>[...occurrences, ...guessedCharacters])
+      setOccurrences(() => [...occurrences, ...guessedCharacters]);
+    } else {
+      setErrors([...errors, true]);
+      console.log('ERRORS', errors);
     }
   };
 
@@ -28,9 +52,13 @@ export const App = () => {
       }}
     >
       <h1>{word}</h1>
-      <HangmanDraw />
+      {showPopUp && <PopUp newGame={resetGame} />}
+      <HangmanDraw errors={errors} />
       <HangmanWord word={word} occurrences={occurrences} />
-      <Keyboard selectedCharacter={lookForOcurrences} />
+      <Keyboard
+        selectedCharacter={lookForOcurrences}
+        clickedCharacters={clickedCharacters}
+      />
     </div>
   );
 };
