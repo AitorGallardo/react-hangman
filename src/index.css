@@ -46,7 +46,7 @@ div.word__character>.bottomLine {
   bottom: 0;
   width: 100%;
   height: 4px;
-  background-color: white;
+  background-color: #19dfcc;
 }
 
 div.word__character>.content {
