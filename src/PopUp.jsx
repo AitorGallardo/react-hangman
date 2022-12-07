@@ -1,5 +1,5 @@
 
-export const PopUp = ({newGame}) => {
+export const PopUp = ({message, newGame}) => {
   return (
     <div style={{ position: 'absolute', width: '100%', height: '100vh',zIndex: '1111'}}>
           
@@ -28,7 +28,7 @@ export const PopUp = ({newGame}) => {
           transform: 'translate(-50%, -50%)',
         }}
       >
-        YOU LOST!
+       {message} 
         <button style={{marginTop:'20px',cursor:'pointer',fontSize:'20px'}} onClick={()=>newGame()}>NEW GAME</button>
       </div>
     </div>
